@@ -23,6 +23,7 @@
     ]
   },
   "dependencies": {
+    "express": "^5.2.1",
     "semver": "^7.7.3"
   }
 }
