@@ -20,7 +20,9 @@ jobs:
 
       # Step 3: Build Docker Image From Newest Repo
       - name: Build Docker Image
-        run: docker buildx build --platform=linux/amd64 -t mmccoy1234/software-citation-station:1.0 .
+        run: |
+          TAG=$(date -u +%Y%m%d-%H%M%S)
+          docker buildx build --platform=linux/amd64 -t mmccoy1234/software-citation-station:$TAG .
 
       # Step 4: Make sure Docker Image Built Successfully
       - name: List Docker Images
