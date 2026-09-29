@@ -9,6 +9,10 @@ jobs:
   clone-repo:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       # Step 1: Clone the repository files onto the runner
       - name: Check out repository code
@@ -27,3 +31,11 @@ jobs:
       # Step 4: Make sure Docker Image Built Successfully
       - name: List Docker Images
         run: docker image ls
+
+      # Step 5: Login to GitHub Container Registry
+      - name: Login to GHCR
+        uses: docker/login-action@4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
