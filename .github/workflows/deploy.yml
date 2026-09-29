@@ -1,0 +1,19 @@
+name: Build and deploy new container
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Fetch Zenodo Versions"]
+    types:
+      - completed
+jobs:
+  clone-repo:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Clone the repository files onto the runner
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      # Step 2: Verify the files are copied
+      - name: List files
+        run: ls -la
